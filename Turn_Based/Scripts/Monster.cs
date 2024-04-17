@@ -5,15 +5,24 @@ public class Monster {
     private int attack;
     private int hpRegen;
     private string renderingArt;
+    private int mana;
     private Monster enemy;
     public Monster(string monsterName, int health, int defense, int attack, int hpRegen, string renderingArt) 
     {
+
         this.monsterName = monsterName;
         this.attack = attack;
         this.health = health;
         this.defense = defense;
         this.RenderingArt = renderingArt;
         this.HpRegen = hpRegen;
+        this.mana = mana;
+    }
+    public void UltimateSkill(){
+        defense += enemy.Defense;
+        enemy.Defense = 0;
+        mana -= 100;
+
     }
     public void AddShield(){
         defense += Convert.ToInt32(health * 0.10);
@@ -53,4 +62,5 @@ public class Monster {
     public global::System.Int32 Attack { get => attack; set => attack = value; }
     public global::System.String RenderingArt { get => renderingArt; set => renderingArt = value; }
     public global::System.Int32 HpRegen { get => hpRegen; set => hpRegen = value; }
+    public global::System.Int32 Mana { get => mana; set => mana = value; }
 }
