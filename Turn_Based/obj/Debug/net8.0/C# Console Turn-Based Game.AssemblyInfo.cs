@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("C# Console Turn-Based Game")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+695bb62d2dd5257a7d684b908e314a77be7c5765")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8c43249fbe1b65b38fef3dc2943071bfae420d2")]
 [assembly: System.Reflection.AssemblyProductAttribute("C# Console Turn-Based Game")]
 [assembly: System.Reflection.AssemblyTitleAttribute("C# Console Turn-Based Game")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
