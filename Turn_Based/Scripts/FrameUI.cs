@@ -29,32 +29,49 @@ public class FrameUI {
             bar = bar + "█";
         }
         Addtext($" HP   [{AddSpace(10-(Health/10))}{bar}] {Health}%", true);
-        AddLine();
+        AddLine(1);
     }
     void showStatusBar(Monster monster, bool isBottomBar)
     {
-        AddLine();
+        AddLine(0);
         showHealthBar(monster.Health);
         Addtext($" DEF   {AddValueTextView(monster.Defense, 10)} ", isBottomBar);
         Addtext($" ATK   {AddValueTextView(monster.Attack, 10)} ", isBottomBar);
         Addtext($" Regen {AddValueTextView(monster.HpRegen, 10)} ", isBottomBar);
-        AddLine();
+        AddLine(2);
     }
     void AddLine(int position)
     {
         // top    - 0
         // center - 1
         // bottom - 2
-        Console.Write("\n╔");
+        char left = '|';
+        char right = '|';
+        switch(position)
+        {
+            case 0 :
+                left = '╔';
+                right = '╗';
+                break;
+            case 1 :
+                left = '╠';
+                right = '╣';
+                break;
+            case 2 :
+                left = '╚';
+                right = '╝';
+                break;
+        }
+        Console.Write("\n" + left);
         for (int i = 0; i < widthSize-2; i++)
         {
             Console.Write("═");
         }
-        Console.Write("╗");
+        Console.Write(right);
     }
     void Addtext(string text, bool isRight)
     {
-        string res = "|";
+        string res = "║";
         if(!isRight){
            res = res + AddSpace((widthSize-2)-text.ToCharArray().Length);
         }
@@ -62,7 +79,7 @@ public class FrameUI {
         if(isRight){
            res = res + AddSpace((widthSize-2)-text.ToCharArray().Length);
         }
-        res = res + "|";
+        res = res + "║";
         Console.Write("\n" + res);
     }
     string AddSpace(int num)
