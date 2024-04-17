@@ -15,6 +15,9 @@ public class Monster {
         this.RenderingArt = renderingArt;
         this.HpRegen = hpRegen;
     }
+    public void AddShield(){
+        defense += Convert.ToInt32(health * 0.10);
+    }
     public void Heal()
     {
         Random random = new Random();

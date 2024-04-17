@@ -25,6 +25,7 @@ public class HomePlay
         frameUI.AddMonsters(enemy, yourMonster);
         skillSelection.AddSelectionAction(yourMonster.DealDamage, "Deal Damage");
         skillSelection.AddSelectionAction(yourMonster.Heal, "Restore Health");
+        skillSelection.AddSelectionAction(yourMonster.AddShield, "Restore Shield");
         enemySkillSelection.AddSelectionAction(enemy.DealDamage, "Deal Damage");
         enemySkillSelection.AddSelectionAction(enemy.Heal, "Restore Health");
         while(enemy.Health > 0 && yourMonster.Health > 0)
