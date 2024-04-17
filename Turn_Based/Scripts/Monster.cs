@@ -24,7 +24,7 @@ public class Monster {
     {
         this.enemy.TakeDamage(this.attack);
     }
-    public void SetEnemy(Monster enemy)
+    public void SetEnemy(Monster enemy) 
     {
         this.enemy = enemy;
     }

@@ -10,23 +10,29 @@ public class FrameUI {
         this.enemy = monster1;
         this.yourMonster = yourMonster;
     }
-    public void RenderGame()
+    public void RenderGame(int indexOfMoveMonster)
     {
         Console.Clear();
-        AddLine();
-        Addtext($"DEF {AddValueTextView(enemy.Defense, 10)} ", false);
-        Addtext($"ATK {AddValueTextView(enemy.Attack, 10)} ", false);
-        Addtext($"HP {AddValueTextView(enemy.Health, 10)} ", false);
-        Addtext($"HP Regen {AddValueTextView(enemy.HpRegen, 10)} ", false);
-        AddLine();
-        Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", AddSpace(widthSize/2)));
+        showStatusBar(enemy, false);
+        if(indexOfMoveMonster == 0) { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", "\t\t\t")); } 
+        else { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", "\t\t\t\t\t")); }
+
         Console.Write($"\n{AddSpace(((widthSize-2)/2)-2)}[ vs ]{AddSpace(Convert.ToInt32((widthSize-(1.5))/2)-2)}");
-        Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1", " "));
+        if(indexOfMoveMonster == 1) { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", "\t\t\t")); }
+        else { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", "\t")); }
+        showStatusBar(yourMonster, true);
+    }
+    void showHealthBar ()
+    [
+        
+    ]
+    void showStatusBar(Monster monster, bool isBottomBar)
+    {
         AddLine();
-        Addtext($" DEF {AddValueTextView(yourMonster.Defense, 10)}", true);
-        Addtext($" ATK {AddValueTextView(yourMonster.Attack, 10)}", true);
-        Addtext($" HP  {AddValueTextView(yourMonster.Health, 10)}", true);
-        Addtext($"HP Regen {AddValueTextView(yourMonster.HpRegen, 10)} ", true);
+        Addtext($" DEF   {AddValueTextView(monster.Defense, 10)} ", isBottomBar);
+        Addtext($" ATK   {AddValueTextView(monster.Attack, 10)} ", isBottomBar);
+        Addtext($" HP    {AddValueTextView(monster.Health, 10)} ", isBottomBar);
+        Addtext($" Regen {AddValueTextView(monster.HpRegen, 10)} ", isBottomBar);
         AddLine();
     }
     void AddLine()

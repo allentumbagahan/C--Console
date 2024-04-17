@@ -1,4 +1,5 @@
-public class HomePlay {
+public class HomePlay 
+    {
     private List<Monster> yourMonsters = new List<Monster>();
     public void Play_Adventure ()
     {
@@ -28,9 +29,17 @@ public class HomePlay {
         enemySkillSelection.AddSelectionAction(enemy.Heal, "Restore Health");
         while(enemy.Health > 0 && yourMonster.Health > 0)
         {
-            frameUI.RenderGame();
+            frameUI.RenderGame(-1);
             skillSelection.ShowSelection();
+            frameUI.RenderGame(1);
+            Thread.Sleep(300);
+            frameUI.RenderGame(-1);
+            Thread.Sleep(500);
+            frameUI.RenderGame(0);
+            Thread.Sleep(200);
             enemySkillSelection.InvokeSelection(randomizer.Next(0, 1));
+            frameUI.RenderGame(-1);
+            Thread.Sleep(200);
         }
     }
     
