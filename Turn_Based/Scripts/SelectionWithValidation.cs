@@ -14,12 +14,20 @@ public class SelectionWithValidation
 		public string actionName;
 		
     }
-	 
-
     List<ActionType> ActionList = new List<ActionType>();
+	 
+    public void ClearSelection()
+    {
+        ActionList.Clear();
+    }
     public void InvokeSelection(int index)
     {
         ActionList[index].action.Invoke();
+    }
+    public void InvokeSelection()
+    {
+        Random random = new Random();
+        ActionList[random.Next(0, ActionList.Count() - 1)].action.Invoke();
     }
     public void AddSelectionAction(ActionCon action, string actionName)
 	{

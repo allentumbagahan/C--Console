@@ -17,28 +17,28 @@ public class HomePlay
         SelectionWithValidation enemySkillSelection = new SelectionWithValidation();
         Random randomizer = new Random();
         Random randomizer2 = new Random();
-<<<<<<< Updated upstream
-        Monster enemy = new Monster("Enemy", 100, randomizer.Next(2, 10), randomizer.Next(2, 10),  randomizer.Next(1, 10), ArtList.twinDog);
-        Monster yourMonster = new Monster("Enemy", 100, randomizer2.Next(2, 10), randomizer2.Next(2, 10), randomizer.Next(1, 10), ArtList.elepant);
-=======
-        Monster enemy = new Monster("Enemy", 100, randomizer.Next(2, 10), randomizer.Next(2, 10),  randomizer.Next(1, 10), ArtList.hippo);
-        Monster yourMonster = new Monster("Enemy", 100, randomizer2.Next(2, 10), randomizer2.Next(2, 10), randomizer.Next(1, 10), ArtList.spider);
->>>>>>> Stashed changes
+        Monster enemy = new Monster("Enemy", ArtList.twinDog);
+        Monster yourMonster = new Monster("Enemy", ArtList.pegasus);
+        enemy.GenerateStats(1);
+        yourMonster.GenerateStats(1);
         enemy.SetEnemy(yourMonster);
         yourMonster.SetEnemy(enemy);
         FrameUI frameUI = new FrameUI(60);
         frameUI.AddMonsters(enemy, yourMonster);
-        skillSelection.AddSelectionAction(yourMonster.DealDamage, "Deal Damage");
-        skillSelection.AddSelectionAction(yourMonster.Heal, "Restore Health");
-        skillSelection.AddSelectionAction(yourMonster.AddShield, "Restore Shield");
-        skillSelection.AddSelectionAction(yourMonster.UltimateSkill, "Ultimate Skill");
-        enemySkillSelection.AddSelectionAction(enemy.DealDamage, "Deal Damage");
-        enemySkillSelection.AddSelectionAction(enemy.Heal, "Restore Health");
-        enemySkillSelection.AddSelectionAction(enemy.AddShield, "Restore Shield");
-        enemySkillSelection.AddSelectionAction(enemy.UltimateSkill, "Ultimate Skill");
+        
 
         while(enemy.Health > 0 && yourMonster.Health > 0)
         {
+            skillSelection.ClearSelection();
+            enemySkillSelection.ClearSelection();
+            skillSelection.AddSelectionAction(yourMonster.DealDamage, "Deal Damage");
+            //skillSelection.AddSelectionAction(yourMonster.AddShield, "Restore Shield");
+            enemySkillSelection.AddSelectionAction(enemy.DealDamage, "Deal Damage");
+            //enemySkillSelection.AddSelectionAction(enemy.AddShield, "Restore Shield");
+            if(yourMonster.Health < 100) skillSelection.AddSelectionAction(yourMonster.Heal, "Restore Health"); 
+            if(yourMonster.Mana >= 100) skillSelection.AddSelectionAction(yourMonster.UltimateSkill, "Ultimate Skill");
+            if(enemy.Mana >= 100) enemySkillSelection.AddSelectionAction(enemy.UltimateSkill, "Ultimate Skill");
+            if(enemy.Health < 100) enemySkillSelection.AddSelectionAction(enemy.Heal, "Restore Health");
             frameUI.RenderGame(-1);
             skillSelection.ShowSelection();
             frameUI.RenderGame(1);
@@ -47,7 +47,7 @@ public class HomePlay
             Thread.Sleep(500);
             frameUI.RenderGame(0);
             Thread.Sleep(200);
-            enemySkillSelection.InvokeSelection(randomizer.Next(0, 3));
+            enemySkillSelection.InvokeSelection();
             frameUI.RenderGame(-1);
             Thread.Sleep(200);
         }

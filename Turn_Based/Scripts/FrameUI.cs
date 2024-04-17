@@ -39,6 +39,7 @@ public class FrameUI {
         Addtext($" ATK   {AddValueTextView(monster.Attack, 10)} ", isBottomBar);
         Addtext($" Regen {AddValueTextView(monster.HpRegen, 10)} ", isBottomBar);
         Addtext($" Mana  {AddValueTextView(monster.Mana, 10)} ", isBottomBar);
+        Addtext($" PEN   {AddValueTextView(monster.Penetration, 10)} ", isBottomBar);
         AddLine(2);
     }
     void AddLine(int position)
