@@ -5,5 +5,6 @@ public class ArtList {
     public static string stickMan = "1	   ( )\n	  /[ ]\\\n	 / [ ] \\\n  	   [ ]\n  	  /   \\\n 	 /     \\\n	=	=\n";
     public static string spider = "1    \\  \\  ,,  /  /   \n1     '-.`\\()/`.-'   \n1    .--_'(  )'_--.   \n1   / /` /`\"\"`\\ `\\ \\      \n1    |  |  ><  |  |       \n1    \\  \\      /  /        \n1        '.__.'    ";
     public static string hippo ="1      c~~p ,---------. \n1 ,---'oo  )           \\\n1( O O                  )/\n1 `=^='                 /\n1       \\    ,     .   /\n1       \\  |-----'|  /\n1       ||__|    |_|__|";
-
+    public static string pegasus="1          ,  ,\n1          \\\\ \\\\           \n1          ) \\\\ \\\\    _p_ \n1          )^\\))\\))  /  *\\ \n1           \\_|| || / /^`-' \n1  __       -\\ \\\\--/ / \n1 <'  \\\\___/   ___. )'\n1     `====\\ )___/\\\\ \n1          //     `\"\n1          \\\\    /  \\\n1          `\"";
+    
 } 

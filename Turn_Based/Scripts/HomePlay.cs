@@ -18,7 +18,7 @@ public class HomePlay
         Random randomizer = new Random();
         Random randomizer2 = new Random();
         Monster enemy = new Monster("Enemy", 100, randomizer.Next(2, 10), randomizer.Next(2, 10),  randomizer.Next(1, 10), ArtList.hippo);
-        Monster yourMonster = new Monster("Enemy", 100, randomizer2.Next(2, 10), randomizer2.Next(2, 10), randomizer.Next(1, 10), ArtList.spider);
+        Monster yourMonster = new Monster("Enemy", 100, randomizer2.Next(2, 10), randomizer2.Next(2, 10), randomizer.Next(1, 10), ArtList.pegasus);
         enemy.SetEnemy(yourMonster);
         yourMonster.SetEnemy(enemy);
         FrameUI frameUI = new FrameUI(60);
