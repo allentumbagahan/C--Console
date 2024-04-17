@@ -16,33 +16,41 @@ public class FrameUI {
         showStatusBar(enemy, false);
         if(indexOfMoveMonster == 0) { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", "\t\t\t")); } 
         else { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", "\t\t\t\t\t")); }
-
         Console.Write($"\n{AddSpace(((widthSize-2)/2)-2)}[ vs ]{AddSpace(Convert.ToInt32((widthSize-(1.5))/2)-2)}");
         if(indexOfMoveMonster == 1) { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", "\t\t\t")); }
         else { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", "\t")); }
         showStatusBar(yourMonster, true);
     }
-    void showHealthBar ()
-    [
-        
-    ]
+    void showHealthBar (int Health)
+    {   
+        string bar = "";
+        for (int i = 0; i < Health/10; i++)
+        {
+            bar = bar + "█";
+        }
+        Addtext($" HP   [{AddSpace(10-(Health/10))}{bar}] {Health}%", true);
+        AddLine();
+    }
     void showStatusBar(Monster monster, bool isBottomBar)
     {
         AddLine();
+        showHealthBar(monster.Health);
         Addtext($" DEF   {AddValueTextView(monster.Defense, 10)} ", isBottomBar);
         Addtext($" ATK   {AddValueTextView(monster.Attack, 10)} ", isBottomBar);
-        Addtext($" HP    {AddValueTextView(monster.Health, 10)} ", isBottomBar);
         Addtext($" Regen {AddValueTextView(monster.HpRegen, 10)} ", isBottomBar);
         AddLine();
     }
-    void AddLine()
+    void AddLine(int position)
     {
-        Console.Write("\n|");
+        // top    - 0
+        // center - 1
+        // bottom - 2
+        Console.Write("\n╔");
         for (int i = 0; i < widthSize-2; i++)
         {
-            Console.Write("-");
+            Console.Write("═");
         }
-        Console.Write("|");
+        Console.Write("╗");
     }
     void Addtext(string text, bool isRight)
     {
