@@ -17,8 +17,8 @@ public class HomePlay
         SelectionWithValidation enemySkillSelection = new SelectionWithValidation();
         Random randomizer = new Random();
         Random randomizer2 = new Random();
-        Monster enemy = new Monster("Enemy", 100, randomizer.Next(2, 10), randomizer.Next(2, 10),  randomizer.Next(1, 10), ArtList.twinDog);
-        Monster yourMonster = new Monster("Enemy", 100, randomizer2.Next(2, 10), randomizer2.Next(2, 10), randomizer.Next(1, 10), ArtList.elepant);
+        Monster enemy = new Monster("Enemy", 100, randomizer.Next(2, 10), randomizer.Next(2, 10),  randomizer.Next(1, 10), ArtList.hippo);
+        Monster yourMonster = new Monster("Enemy", 100, randomizer2.Next(2, 10), randomizer2.Next(2, 10), randomizer.Next(1, 10), ArtList.spider);
         enemy.SetEnemy(yourMonster);
         yourMonster.SetEnemy(enemy);
         FrameUI frameUI = new FrameUI(60);
