@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BAGADIONG FAMILY\\Documents\\YJR\\Github\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj": {}
+    "C:\\Users\\AllenTumbagahan\\Codes\\C# Console\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BAGADIONG FAMILY\\Documents\\YJR\\Github\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj": {
+    "C:\\Users\\AllenTumbagahan\\Codes\\C# Console\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BAGADIONG FAMILY\\Documents\\YJR\\Github\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj",
+        "projectUniqueName": "C:\\Users\\AllenTumbagahan\\Codes\\C# Console\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj",
         "projectName": "C# Console Turn-Based Game",
-        "projectPath": "C:\\Users\\BAGADIONG FAMILY\\Documents\\YJR\\Github\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj",
-        "packagesPath": "C:\\Users\\BAGADIONG FAMILY\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BAGADIONG FAMILY\\Documents\\YJR\\Github\\C--Console\\Turn_Based\\obj\\",
+        "projectPath": "C:\\Users\\AllenTumbagahan\\Codes\\C# Console\\C--Console\\Turn_Based\\C# Console Turn-Based Game.csproj",
+        "packagesPath": "C:\\Users\\AllenTumbagahan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AllenTumbagahan\\Codes\\C# Console\\C--Console\\Turn_Based\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\BAGADIONG FAMILY\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AllenTumbagahan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -60,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

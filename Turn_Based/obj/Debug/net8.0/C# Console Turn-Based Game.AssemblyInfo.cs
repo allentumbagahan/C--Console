@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("C# Console Turn-Based Game")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< Updated upstream
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+695bb62d2dd5257a7d684b908e314a77be7c5765")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8c43249fbe1b65b38fef3dc2943071bfae420d2")]
->>>>>>> Stashed changes
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9af4f7d8094a6b62990d3491a4678b0b53977c7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("C# Console Turn-Based Game")]
 [assembly: System.Reflection.AssemblyTitleAttribute("C# Console Turn-Based Game")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
