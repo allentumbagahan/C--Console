@@ -7,6 +7,8 @@ public class SelectionWithValidation
     //List<> SelectionList = new 
 	private string Header;
 	private string subHeader;
+    private bool isAbletoExit;
+    private string ExitMessage;
     public delegate void ActionCon();
 	struct ActionType
     {
@@ -15,7 +17,15 @@ public class SelectionWithValidation
 		
     }
     List<ActionType> ActionList = new List<ActionType>();
-	 
+    public SelectionWithValidation()
+    {
+
+    }
+	public SelectionWithValidation(bool isAbletoExit, string exitMessage)
+    {
+       this.isAbletoExit = isAbletoExit;
+       this.ExitMessage = exitMessage;
+    }
     public void ClearSelection()
     {
         ActionList.Clear();
@@ -36,7 +46,7 @@ public class SelectionWithValidation
 		actionTemp.actionName = actionName;
         ActionList.Add(actionTemp);
     }  
-
+    
     public void ShowSelection()
 	{	
         int index = 0;
@@ -47,7 +57,15 @@ public class SelectionWithValidation
         {
             Console.WriteLine($"[{++index}] {itemInAction.actionName}");
         }
-        ActionList[SelectOperation()].action.Invoke();
+        if(isAbletoExit) Console.WriteLine($"[{ActionList.Count() + 1}] {ExitMessage}");
+        try
+        {
+            ActionList[SelectOperation()].action.Invoke();
+        }
+        catch (System.Exception)
+        {
+            return;
+        }
     }
 	private  
 
@@ -67,6 +85,10 @@ public class SelectionWithValidation
 				{
                     isSelectedAction = true;
 					return parsedString - 1;
+                }
+                else if(parsedString == ActionList.Count()+1)
+                {
+                    return -1;
                 }
 				else
 				{

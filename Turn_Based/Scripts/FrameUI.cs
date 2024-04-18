@@ -31,18 +31,18 @@ public class FrameUI {
         Addtext($" HP   [{AddSpace(10-(Health/10))}{bar}] {Health}%", true);
         AddLine(1);
     }
-    void showStatusBar(Monster monster, bool isBottomBar)
+    public void showStatusBar(Monster monster, bool isBottomBar)
     {
         AddLine(0);
         showHealthBar(monster.Health);
         Addtext($" DEF   {AddValueTextView(monster.Defense, 10)} ", isBottomBar);
         Addtext($" ATK   {AddValueTextView(monster.Attack, 10)} ", isBottomBar);
         Addtext($" Regen {AddValueTextView(monster.HpRegen, 10)} ", isBottomBar);
-        Addtext($" Mana  {AddValueTextView(monster.Mana, 10)} ", isBottomBar);
+        Addtext($" Rage  {AddValueTextView(monster.Rage, 10)} ", isBottomBar);
         Addtext($" PEN   {AddValueTextView(monster.Penetration, 10)} ", isBottomBar);
         AddLine(2);
     }
-    void AddLine(int position)
+    public void AddLine(int position)
     {
         // top    - 0
         // center - 1
@@ -71,7 +71,7 @@ public class FrameUI {
         }
         Console.Write(right);
     }
-    void Addtext(string text, bool isRight)
+    public void Addtext(string text, bool isRight)
     {
         string res = "║";
         if(!isRight){
