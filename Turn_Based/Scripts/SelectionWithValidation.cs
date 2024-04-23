@@ -86,7 +86,7 @@ public class SelectionWithValidation
                     isSelectedAction = true;
 					return parsedString - 1;
                 }
-                else if(parsedString == ActionList.Count()+1)
+                else if(parsedString == ActionList.Count()+1 && isAbletoExit)
                 {
                     return -1;
                 }
@@ -104,4 +104,5 @@ public class SelectionWithValidation
         while(!isSelectedAction);
 		return 0;
     }
+   
 }

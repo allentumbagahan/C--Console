@@ -1,4 +1,5 @@
-public class FrameUI {
+public class FrameUI : IOutputPositioner
+{
     private Monster enemy;
     private Monster yourMonster;
     private int widthSize;
@@ -14,32 +15,37 @@ public class FrameUI {
     {
         Console.Clear();
         showStatusBar(enemy, false);
-        if(indexOfMoveMonster == 0) { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", "\t\t\t")); } 
-        else { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", "\t\t\t\t\t")); }
-        Console.Write($"\n{AddSpace(((widthSize-2)/2)-2)}[ vs ]{AddSpace(Convert.ToInt32((widthSize-(1.5))/2)-2)}");
-        if(indexOfMoveMonster == 1) { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", "\t\t\t")); }
-        else { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", "\t")); }
+        Console.ForegroundColor = ConsoleColor.Red;
+        if(indexOfMoveMonster == 0) { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", $"{AddTabs(Convert.ToInt32(((Console.WindowWidth - widthSize)/2)/8)+3)}")); } 
+        else { Console.WriteLine("\n" + (enemy.RenderingArt).Replace("1", $"{AddTabs(Convert.ToInt32(((Console.WindowWidth - widthSize)/2)/8)+5)}")); }
+        Console.ForegroundColor = ConsoleColor.White;
+        DisplayToCenter($"{AddSpace(((widthSize-2)/2)-2)}[ vs ]{AddSpace(Convert.ToInt32((widthSize-(1.5))/2)-2)}", true);
+        Console.ForegroundColor = ConsoleColor.Green;
+        if(indexOfMoveMonster == 1) { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", $"{AddTabs(Convert.ToInt32(((Console.WindowWidth - widthSize)/2)/8)+3)}")); }
+        else { Console.WriteLine("\n" + (yourMonster.RenderingArt).Replace("1 ", $"{AddTabs(Convert.ToInt32(((Console.WindowWidth - widthSize)/2)/8))}")); }
+        Console.ForegroundColor = ConsoleColor.White;
         showStatusBar(yourMonster, true);
+        
     }
-    void showHealthBar (int Health)
+    void showHealthBar (int Health, int maxHealth)
     {   
+        float percentage = Health*10.0f/maxHealth*10.0f;
         string bar = "";
-        for (int i = 0; i < Health/10; i++)
+        for (int i = 0; i < Convert.ToInt32(percentage/10); i++)
         {
             bar = bar + "█";
         }
-        Addtext($" HP   [{AddSpace(10-(Health/10))}{bar}] {Health}%", true);
+        Addtext($" HP {Health}/{maxHealth}  [{AddSpace(Convert.ToInt32(10 - (percentage/10)))}{bar}] {Convert.ToInt32(percentage)}%", true);
         AddLine(1);
     }
     public void showStatusBar(Monster monster, bool isBottomBar)
     {
         AddLine(0);
-        showHealthBar(monster.Health);
-        Addtext($" DEF   {AddValueTextView(monster.Defense, 10)} ", isBottomBar);
-        Addtext($" ATK   {AddValueTextView(monster.Attack, 10)} ", isBottomBar);
-        Addtext($" Regen {AddValueTextView(monster.HpRegen, 10)} ", isBottomBar);
-        Addtext($" Rage  {AddValueTextView(monster.Rage, 10)} ", isBottomBar);
-        Addtext($" PEN   {AddValueTextView(monster.Penetration, 10)} ", isBottomBar);
+        showHealthBar(monster.Health, monster.MaxHealth);
+        Addtext($" ATK   {AddValueTextView(monster.Attack, 10)} ", $" DEF   {AddValueTextView(monster.Defense, 10)} ");
+        Addtext($" REGEN {AddValueTextView(monster.HpRegen, 10)} ", $" RAGE  {AddValueTextView(monster.Rage, 10)} ");
+        Addtext($" PEN   {AddValueTextView(monster.Penetration, 10)} ", $" SPEED {AddValueTextView(monster.Speed, 10)} ");
+        Addtext($" LVL   {AddValueTextView(monster.Level, 10)} ", $" EXP {AddValueTextView(monster.Exp, 10)} ");
         AddLine(2);
     }
     public void AddLine(int position)
@@ -49,6 +55,7 @@ public class FrameUI {
         // bottom - 2
         char left = '|';
         char right = '|';
+        string res = "";
         switch(position)
         {
             case 0 :
@@ -64,12 +71,13 @@ public class FrameUI {
                 right = '╝';
                 break;
         }
-        Console.Write("\n" + left);
+        res = res + left;
         for (int i = 0; i < widthSize-2; i++)
         {
-            Console.Write("═");
+            res = res + "═";
         }
-        Console.Write(right);
+        res = res + right;
+        DisplayToCenter(res, true);
     }
     public void Addtext(string text, bool isRight)
     {
@@ -82,7 +90,16 @@ public class FrameUI {
            res = res + AddSpace((widthSize-2)-text.ToCharArray().Length);
         }
         res = res + "║";
-        Console.Write("\n" + res);
+        DisplayToCenter(res, true);
+    }
+    public void Addtext(string text1, string text2)
+    {
+        string res = "║";
+        res = res + text1;
+        res = res + AddSpace((widthSize-2)-(text1.ToCharArray().Length + text2.ToCharArray().Length));
+        res = res + text2;
+        res = res + "║";
+        DisplayToCenter(res, true);
     }
     string AddSpace(int num)
     {
@@ -93,11 +110,25 @@ public class FrameUI {
         }
         return spaces;
     }
+    string AddTabs(int num)
+    {
+        string tabs = "";
+        for (int i = 0; i < num; i++)
+        {
+            tabs = tabs + "\t";
+        }
+        return tabs;
+    }
     string AddValueTextView(int value, int maxText)
     { 
         string res = "[";
         res = res + AddSpace((maxText-2) - Convert.ToString(value).ToCharArray().Length);
         res = res + value + "]";
         return res;
+    }
+    public void DisplayToCenter(string text, bool isNextLine)
+    {
+        int spaces = (Console.WindowWidth - widthSize)/2;
+        Console.Write($"{((isNextLine)? "\n" : "")}{AddSpace(spaces)}{text}");
     }
 }
