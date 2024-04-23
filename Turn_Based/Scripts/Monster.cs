@@ -41,29 +41,42 @@ public class Monster
         }
         return false;
     }
+    public void IncreaseLevel(){
+        GenerateStats(++this.level);
+    }
     public void GenerateStats(int level)
     {
         Random random = new Random();
-        this.baseStats = Convert.ToInt32((18.2*(level)) + (1*level)); 
+        int health, attack, penetration, hpRegen, speed, defense;
+        this.level = level;
+        this.baseStats = Convert.ToInt32((20.2*(level)) + (1*level)); 
         this.baseStatsRemaining = this.baseStats;
-        this.health = random.Next(level*20, level*25);
-        this.maxHealth = this.health;
-        this.baseStatsRemaining -= Convert.ToInt32(this.health/6);
-        this.attack = random.Next(0, Convert.ToInt32(this.baseStatsRemaining*0.4) + 1) + 2;
-        this.baseStatsRemaining -= this.attack;
-        this.penetration = random.Next(0, this.attack - Convert.ToInt32(this.attack*0.2) + 1) + 1;
-        this.baseStatsRemaining -= this.penetration * 2;
-        this.hpRegen = random.Next(0, Convert.ToInt32(this.baseStatsRemaining*0.1) + 1) + 1;
-        this.baseStatsRemaining -= this.hpRegen;
-        this.speed = random.Next(0, Convert.ToInt32(this.baseStatsRemaining*0.2) + 1);
-        this.baseStatsRemaining -= this.speed;
-        this.hpRegen *= 3;
-        this.defense = this.baseStatsRemaining;
+        health = random.Next(((this.maxHealth > 0)? this.maxHealth : level*16), level*24);
+        this.maxHealth = health;
+        this.baseStatsRemaining -= Convert.ToInt32(this.health/4);
+        attack = random.Next(this.attack, this.attack + (Convert.ToInt32(this.baseStatsRemaining*0.7) + 1)) + 2;
+        this.baseStatsRemaining -= attack;
+        penetration = this.penetration + random.Next(0, 2);
+        penetration += Convert.ToInt32((attack/10.00f)*2.0f);
+        this.baseStatsRemaining -= penetration;
+        int maxHpRegen = this.hpRegen + (Convert.ToInt32(this.baseStatsRemaining*0.5) + 1);
+        if(this.hpRegen > maxHpRegen) hpRegen = random.Next(this.hpRegen, this.hpRegen + 1) + 1;
+        else hpRegen = random.Next(this.hpRegen, maxHpRegen) + 1;
+        this.baseStatsRemaining -= hpRegen;
+        speed = random.Next(this.speed, this.speed + (Convert.ToInt32(this.baseStatsRemaining*0.1) + 1));
+        this.baseStatsRemaining -= speed;
+        defense = this.baseStatsRemaining;
         if(this.defense < 0)
         {
-            this.penetration -= Math.Abs(this.defense)/2;
-            this.defense = 0;
+            penetration -= Math.Abs(defense);
+            defense = 0;
         }
+        this.health = health;
+        this.attack = attack;
+        this.penetration = penetration;
+        this.hpRegen = hpRegen;
+        this.speed = speed;
+        this.defense = defense;
     }
     public void UltimateSkill(){
         enemy.SkipFor(2);
@@ -77,7 +90,7 @@ public class Monster
         Random random = new Random();
         this.Health += this.HpRegen;
         float rageReduction = (this.hpRegen * 1.0f)/(this.MaxHealth* 1.0f);
-        this.Rage -=  (rageReduction*30 < this.rage)? Convert.ToInt32(rageReduction*20) : this.rage;
+        this.Rage -=  (rageReduction*45 < this.rage)? Convert.ToInt32(rageReduction*45) : this.rage;
         if(this.Health > MaxHealth) this.Health = MaxHealth;
     }
     public void DealDamage()
@@ -111,12 +124,12 @@ public class Monster
         float rageIncrease = (damage * 1.0f)/(this.MaxHealth* 1.0f);
         this.rage += Convert.ToInt32(rageIncrease*30) + 5;
     }
-    public void SetSelectionRef (ref Monster selectedMonster){
-        this.selectedMonster = selectedMonster;
-    }
-    public void SetAsSelected()
-    {
-        this.selectedMonster = this;
+    public void AddExp(int expIncrease){
+        this.exp += expIncrease;
+        if(this.exp >= 10){
+            this.exp -= 10;
+            IncreaseLevel();
+        }
     }
     public global::System.String MonsterName { get => monsterName; set => monsterName = value; }
     public global::System.Int32 Health { get => health; set => health = value; }
@@ -130,6 +143,6 @@ public class Monster
     public global::System.Int32 Penetration { get => penetration; set => penetration = value; }
     public global::System.Int32 Speed { get => speed; set => speed = value; }
     public global::System.Int32 MaxHealth { get => maxHealth; set => maxHealth = value; }
-    public global::System.Int32 Exp { get => exp; set => exp = value; }
     public global::System.Int32 Level { get => level; set => level = value; }
+    public global::System.Int32 Exp { get => exp;}
 }

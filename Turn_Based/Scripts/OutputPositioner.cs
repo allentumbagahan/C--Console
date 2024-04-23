@@ -1,5 +1,7 @@
-interface IOutputPositioner
+//abstraction
+public abstract class OutputPositioner
 {
-    void DisplayToCenter(string text, bool isNextLine);
+    
+    public abstract void DisplayToCenter(string text, bool isNextLine, int widthSize);
     
 }
